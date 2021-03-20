@@ -305,8 +305,9 @@ def parse_events(content, start=None, end=None, default_span=timedelta(days=7)):
                 else:
                     exlist.append(component['EXDATE'])
                 for ex in exlist:
-                    exdate = ex.to_ical().decode("UTF-8")
-                    exceptions[exdate[0:8]] = exdate
+                    if(ex is not None):
+                        exdate = ex.to_ical().decode("UTF-8")
+                        exceptions[exdate[0:8]] = exdate
 
             # Attempt to work out what timezone is used for the start
             # and end times. If the timezone is defined in the calendar,
